@@ -1,0 +1,15 @@
+{
+  "name": "teamnull",
+  "version": "1.0.0",
+  "description": "* Jack Koontz * Matthew Stubblefield * Michael Durand * Jacob Smith",
+  "main": "index.js",
+  "scripts": {
+    "server": "node backend/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
