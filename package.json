@@ -1,7 +1,7 @@
 {
-  "name": "teamnull",
+  "name": "applicants",
   "version": "1.0.0",
-  "description": "* Jack Koontz * Matthew Stubblefield * Michael Durand * Jacob Smith",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "server": "node backend/index.js"
