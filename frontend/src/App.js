@@ -1,15 +1,19 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // Create a state variable to track the sidebar's visibility
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
+  const [apiResponse, setApiResponse] = useState("");
 
-  // Function to toggle the sidebar's visibility
-  const toggleSidebar = () => {
-    setIsSidebarVisible(!isSidebarVisible);
-  };
+  useEffect(() => {
+    // This is where you can call your API and set the response in state.
+    // You can use the fetch API or any other method you prefer.
+    fetch("http://localhost:9000/testAPI")
+      .then(res => res.text())
+      .then(res => setApiResponse(res))
+      .catch(error => console.error(error)); // Handle any fetch errors
+  }, []); // The empty array [] means this effect runs once when the component mounts.
+
 
   return (
     <div className="container">
@@ -19,6 +23,7 @@ function App() {
         <div className="line"></div>
           <h1 className='header-text'>UMKC GTA Application Portal</h1>
       </div>
+      <div>{apiResponse}</div>
     </div>
   );
 }
