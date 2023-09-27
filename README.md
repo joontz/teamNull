@@ -30,6 +30,5 @@ https://www.freecodecamp.org/news/create-a-react-frontend-a-node-express-backend
 I did have to start making changes about halfway through after things wouldnt work, so beware if you end up
 trying to go back through these steps. (although you shouldnt have to for this repo). 
 
-To make changes to the backend api you can edit 'testAPI.js', but unlike the frontend it won't update in real time
-you will have to stop the backend and rerun it with npm start.
+To make changes to the backend api you can edit 'testAPI.js'.
 	
