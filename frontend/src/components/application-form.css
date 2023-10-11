@@ -1,0 +1,38 @@
+#box1 {
+    height: 2000px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+    background-color: white;
+    outline: auto;
+}
+
+#applicationBox {
+    height: 2000px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+    background-color: white;
+    outline: auto;
+    display: flex;
+}
+
+#promptColumn {
+    
+}
+
+#form {
+    display: flex;
+    justify-content:space-between;
+}
+
+#applicationPage {
+    display:flex;
+    justify-content:space-between;
+}
+
+#inputPrompt {
+    font-size: 30px;
+}
