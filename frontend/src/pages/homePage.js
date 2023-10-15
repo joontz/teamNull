@@ -1,36 +1,30 @@
-import React, { useState, useEffect } from "react"
-import "../App.css"
-import Header from "../components/header"
+// App.js
+import React, { useState, useEffect } from 'react';
+import '../App.css';
+import students from '../images/students.jpg';
 import { useNavigate } from "react-router-dom"
-
-export default function Home() {
-  const [apiResponse, setApiResponse] = useState("")
-
-  const navigate = useNavigate()
-
-  function signInClick() {
-    navigate("/login")
-  }
-
-  useEffect(() => {
-    // This is where you can call your API and set the response in state.
-    // You can use the fetch API or any other method you prefer.
-    fetch("http://localhost:9000/testAPI")
-      .then((res) => res.text())
-      .then((res) => setApiResponse(res))
-      .catch((error) => console.error(error)) // Handle any fetch errors
-  }, []) // The empty array [] means this effect runs once when the component mounts.
+import Header from "../components/header"
 
 
+
+export default function App() {
+  
 
   return (
-    <div>
-      <div className="container">
-        <Header />
-        <button type="submit" onClick={signInClick}>
-          Sign in
-        </button>
-      </div>
+    <div className="container">
+      <Header />
+        
+        <img src={students} alt="Your Image Alt Text" className='landing-img' />
+        
+        <div className='landing-txt-container'>
+          <div className='landing-header-txt'> Applying to be a GTA Tutor has never been easier. </div>
+          <div className='landing-header-txt'> Make a difference this semester by applying now! </div>
+        </div>
+
+        <div className='apply-container'>
+          <button className="apply-button"> Apply </button>
+        </div>
+
     </div>
-  )
+  );
 }
