@@ -1,38 +1,73 @@
-#box1 {
-    height: 2000px;
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    text-align: left;
-    background-color: white;
-    outline: auto;
-}
-
-#applicationBox {
-    height: 2000px;
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    text-align: left;
-    background-color: white;
-    outline: auto;
+.box1 {
     display: flex;
-}
-
-#promptColumn {
+    flex-direction: column;
+    align-items: left;
+    gap: 2vh;
+    height: 100%;
+    width: 90%;
+    background-color: white;
+    margin-top: 1%;
+    margin-bottom: 2.5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     
 }
 
-#form {
+.text-header{
+    font-size: 32px;
+    font-weight: bold;
+    align-self: center;
+}
+
+.text-items{
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 2%;
+    font-size: large;
+}
+
+.bold{
+    font-weight: strong;
+}
+.applicationBox {
     display: flex;
-    justify-content:space-between;
+    flex-direction: column;
+    width: 100%;
 }
 
-#applicationPage {
-    display:flex;
-    justify-content:space-between;
+.prompt-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
-#inputPrompt {
-    font-size: 30px;
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    gap: 2%;
+}
+
+.application-container{
+    display: flex;
+    background-color: white;
+    width: 45%;
+    border: 10px solid #0066cc;
+}
+
+.applicationPage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    background-color: pink;
+  
+}
+
+.inputPrompt {
+    font-size: 100%;
+    font-weight: bold;
 }
