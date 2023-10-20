@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import Header from "../components/header";
-import Signup from "./signupPage";
 
-function Login() {
+function Signup() {
+  const navigate = useNavigate();
+
   const box = {
     "border-radius": "5%",
     textAlign: "center",
     padding: "20px",
     border: "2px solid #ccc",
-  };
-
-  const title = {
-    textAlign: "center",
-    "font-size": "40px",
-    "padding-top": "50px",
-    "padding-bottom": "50px",
   };
 
   const input = {
@@ -49,22 +43,32 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
 
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "email") setEmail(value);
+    else if (name === "password") setPassword(value);
+    else if (name === "confirmPassword") setConfirmPassword(value);
+    setError(null);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetch("http://localhost:9000/login", {
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    const formData = {
+      email: `${email}`,
+      password: `${password}`,
+    };
+
+    fetch("http://localhost:9000/signup", {
       method: "POST",
-      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -75,8 +79,7 @@ function Login() {
     })
       .then((res) => {
         if (res.status === 200) {
-          alert("successfully logged in");
-          navigate('/dashboard')
+          alert("successfully created user");
         } else {
           const error = new Error(res.error);
           throw error;
@@ -84,10 +87,11 @@ function Login() {
       })
       .catch((err) => {
         console.error(err);
-        setError("Incorrect email or password");
+        alert("error creating user");
       });
+
+    navigate("/login");
   };
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -98,10 +102,11 @@ function Login() {
             <div>
               <input
                 type="email"
-                placeholder="Email Address"
+                name="email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={handleInputChange}
                 required
+                placeholder="Email Address"
                 style={input}
               />
             </div>
@@ -109,32 +114,45 @@ function Login() {
             <div>
               <input
                 type="password"
-                placeholder="Password"
+                name="password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={handleInputChange}
                 required
+                placeholder="Password"
+                style={input}
+              />
+            </div>
+            <p></p>
+            <div>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={handleInputChange}
+                required
+                placeholder="Confirm Password"
                 style={input}
               />
             </div>
             <p></p>
             <button type="submit" style={loginButton}>
-              Login
+              Sign Up
             </button>
             <p></p>
             {error && <div style={errorMessage}>{error}</div>}
             <p></p>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/login");
+              }}>
+              Already have an account? Login here
+            </Link>
           </form>
-          <Link
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/signup");
-            }}>
-            No account? Sign up here
-          </Link>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Signup;
