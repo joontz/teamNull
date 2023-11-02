@@ -53,10 +53,37 @@ export default class ApplicationForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        const currentLevelValue = this.state.currentLevel;
+        const graduatingSemesterValue = this.state.graduatingSemester;
+        const currentMajorValue = this.state.currentMajor;
+        const coursesForGraderValue = this.state.coursesForGrader;
+        const coursesForLabInstructorValue = this.state.coursesForLabInstructor;
+
+        // Check if "Select..." is chosen for the dropdown selects
+        if (currentLevelValue === "") {
+            alert("Please select a different option for your current level of education.");
+            return; // Prevent form submission
+        }
+
+        if (graduatingSemesterValue === "") {
+            alert("Please select a different option for your graduting semester.");
+            return; // Prevent form submission
+        }
+
+        if (currentMajorValue === "") {
+            alert("Please select a different option for your current major.");
+            return; // Prevent form submission
+        }
+        // Ensure that the user has selected at least one class
+        if ((coursesForGraderValue.length === 0) && (coursesForLabInstructorValue.length === 0 )) {
+            alert("Please select a course that you wish to apply for.");
+            return;
+        }
 
         // Handle form submission here, send data to the database
         console.log(this.state);
     }
+
 
     render() {
         return (               
@@ -68,25 +95,25 @@ export default class ApplicationForm extends Component {
                             <div className='row'>
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">First Name:</div>
-                                    <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleInputChange} />
+                                    <input type="text" name="firstName" required value={this.state.firstName} onChange={this.handleInputChange} />
                                 </div>
                             
 
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">Last Name:</div>
-                                    <input type="text" name="lastName" value={this.state.lastName} onChange={this.handleInputChange} />
+                            <input type="text" name="lastName" required value={this.state.lastName} onChange={this.handleInputChange} />
                                 </div>
                             </div>
 
                             <div className='row'>
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">Student ID:</div>
-                                <input type="number" min="0" step = "" name="studentId" value={this.state.studentId} onChange={this.handleInputChange} />
+                            <input type="number" min="0" step="" name="studentId" required value={this.state.studentId} onChange={this.handleInputChange} />
                                 </div>
 
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">College Email:</div>
-                                    <input type="email" name="collegeEmail" value={this.state.collegeEmail} onChange={this.handleInputChange} />
+                            <input type="email" name="collegeEmail" required value={this.state.collegeEmail} onChange={this.handleInputChange} />
                                 </div>
                             </div>
                             
@@ -116,12 +143,12 @@ export default class ApplicationForm extends Component {
 
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">Cumulative GPA:</div>
-                                    <input type="number" step="0.01" min="0" name="cumulativeGPA" value={this.state.cumulativeGPA} onChange={this.handleInputChange} />
+                        <input type="number" step="0.01" min="0" name="cumulativeGPA" required value={this.state.cumulativeGPA} onChange={this.handleInputChange} />
                                 </div>
 
                                 <div className='prompt-column'>
                                     <div className="inputPrompt">Hours Completed:</div>
-                                    <input type="number" name="hoursCompleted" value={this.state.hoursCompleted} onChange={this.handleInputChange} />
+                        <input type="number" name="hoursCompleted" required value={this.state.hoursCompleted} onChange={this.handleInputChange} />
                                 </div>
 
                                 <div className='prompt-column'>
