@@ -9,8 +9,10 @@ import Login from "./pages/loginPage";
 import Apply from "./pages/apply";
 import Faq from "./pages/faq";
 import Signup from "./pages/signupPage";
+import Search from "./pages/search"
 import Dashboard from "./pages/dashboard";
 import RequireAuth from "./RequireAuth";
+import Contact from "./pages/contact";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +24,8 @@ root.render(
         <Route path="/apply" element={<Apply />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/contact" element={<Contact />} />
         <Route
           path="/dashboard"
           element={
