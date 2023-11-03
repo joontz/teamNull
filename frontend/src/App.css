@@ -46,3 +46,52 @@
 .apply-button:hover {
   background-color: #7c7d81; 
 }
+
+.postings-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: white;
+  
+}
+
+.posting-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.posting-box {
+  background: linear-gradient(to right, #005293, #0072b0);
+  width: 100px;
+  height: 200px;
+  margin: 2%;
+  flex: 0 0 calc(33.33% - 4%); 
+}
+
+.title-row {
+  display: flex;
+  margin-left: 2%;
+  padding: 4%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 28px;
+  margin-right: 30px;
+}
+
+.description {
+  font-size: 24px;
+  padding-top: 1%; 
+}
+
+.button {
+  text-align: center !important;
+  padding-left: 25%;
+  padding-top: 5%;
+  margin-top: 8%;
+  margin-left: 60%;
+
+ 
+}
