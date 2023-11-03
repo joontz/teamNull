@@ -38,7 +38,43 @@ export default class ApplicationForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         // Handle form submission here, send data to the server
-        console.log(this.state);
+        //TODO: @jdsp4k This should be genericized
+        fetch("http://localhost:9000/apply", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstName: firstName,
+              lastName: lastName,
+              studentId: studentId,
+              collegeEmail: collegeEmail,
+              currentLevel: currentLevel,
+              graduatingSemester: graduatingSemester,
+              cumulativeGPA: cumulativeGPA,
+              hoursCompleted: hoursCompleted,
+              undergraduateDegree: undergraduateDegree,
+              currentMajor: currentMajor,
+              applyingFor: applyingFor,
+              isGtaCertified: isGtaCertified,
+              coursesForLabInstructor: coursesForLabInstructor,
+            }),
+          })      
+          .then((res) => {
+            if (res.status === 200) {
+              alert("Application submitted");
+              navigate('/dashboard')
+            } else {
+              const error = new Error(res.error);
+              throw error;
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            //setError("");
+          });
+        //console.log(this.state);
     }
 
     render() {
