@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './application-form.css';
+import { useNavigate } from "react-router-dom";
 
+//const navigate = useNavigate;
 export default class ApplicationForm extends Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,7 @@ export default class ApplicationForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        const {navigate} = this.props;
         // Handle form submission here, send data to the server
         //TODO: @jdsp4k This should be genericized
         fetch("http://localhost:9000/apply", {
@@ -46,19 +49,19 @@ export default class ApplicationForm extends Component {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              firstName: firstName,
-              lastName: lastName,
-              studentId: studentId,
-              collegeEmail: collegeEmail,
-              currentLevel: currentLevel,
-              graduatingSemester: graduatingSemester,
-              cumulativeGPA: cumulativeGPA,
-              hoursCompleted: hoursCompleted,
-              undergraduateDegree: undergraduateDegree,
-              currentMajor: currentMajor,
-              applyingFor: applyingFor,
-              isGtaCertified: isGtaCertified,
-              coursesForLabInstructor: coursesForLabInstructor,
+              firstName: this.firstName,
+              lastName: this.lastName,
+              studentId: this.studentId,
+              collegeEmail: this.collegeEmail,
+              currentLevel: this.currentLevel,
+              graduatingSemester: this.graduatingSemester,
+              cumulativeGPA: this.cumulativeGPA,
+              hoursCompleted: this.hoursCompleted,
+              undergraduateDegree: this.undergraduateDegree,
+              currentMajor: this.currentMajor,
+              applyingFor: this.applyingFor,
+              isGtaCertified: this.isGtaCertified,
+              coursesForLabInstructor: this.coursesForLabInstructor,
             }),
           })      
           .then((res) => {
@@ -66,6 +69,7 @@ export default class ApplicationForm extends Component {
               alert("Application submitted");
               navigate('/dashboard')
             } else {
+              alert(res.status);
               const error = new Error(res.error);
               throw error;
             }

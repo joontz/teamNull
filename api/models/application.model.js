@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //define an application object
-const appSchema = new Schema(
+const applicationSchema = new Schema(
   {
     firstName: {
       type: String,
