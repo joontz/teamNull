@@ -61,3 +61,21 @@
   }
 
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0066cc; /* Example background color */
+  z-index: 1000; /* Adjust the z-index as needed */
+  /* Add any other styles for your header */
+}
+
+.footer h1 {
+  margin-right: 20px; /* Adjust the value as needed */
+}
+  

@@ -20,9 +20,22 @@ export default function Header() {
     navigate("/faq")
   }
 
+  function goToSearch() {
+    navigate("/search")
+  }
+
+  function goToContact()
+  {
+    navigate("/contact")
+  }
+
   function goToHome() {
     navigate("/")
   }
+
+  
+
+  
 
   // useEffect(() => {
   //   // This is where you can call your API and set the response in state.
@@ -45,7 +58,8 @@ export default function Header() {
               <button className="link" onClick={goToApply} > Apply </button>
               <button className="link" onClick={goToFaq}> FAQ </button>
               <button className="link" type="submit" onClick={signInClick}>Login</button>
-              <button className="link"> Contact Us </button>
+              <button className="link" onClick={goToContact}> Contact Us </button>
+              <button className="link" onClick={goToSearch}> Search Applications </button>
             </div>
           </div>
       </div>
