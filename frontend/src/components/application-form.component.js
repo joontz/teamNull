@@ -104,6 +104,7 @@ export default class ApplicationForm extends Component {
               applyingFor: this.applyingFor,
               isGtaCertified: this.isGtaCertified,
               coursesForLabInstructor: this.coursesForLabInstructor,
+              resume: this.resume,
             }),
           })      
           .then((res) => {

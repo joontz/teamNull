@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+//TODO: Figure out where resumes are going so we can store a ref to them.
+const root = "";
+
 //define an application object
 const applicationSchema = new Schema(
   {
@@ -23,18 +26,15 @@ const applicationSchema = new Schema(
     collegeEmail: {
       type: String,
       trim: true,
-      match: ".*", //TODO: This needs to be updated with an appropriate regex
     },
     currentLevel: {
       type: String,
       trim: true,
       uppercase: true,
-      enum: ["BACHELORS", "MASTERS", "DOCTORATE"],
     },
     graduatingSemester: {
       type: String,
       trim: true,
-      match: "\A(SP|FL|SM) (\d\d\Z|20\d\d\Z)",
     },
     cumulativeGPA: {
       type: Number,
@@ -63,6 +63,10 @@ const applicationSchema = new Schema(
     coursesForLabInstructor: {
       type: String,
       trim: true,
+    },
+    resume: {
+      type: String,
+      get: v => '${root}/resumes/${v}',
     },
   },
   {
