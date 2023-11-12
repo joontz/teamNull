@@ -9,13 +9,14 @@ import ApplicationInfo from '../components/application-info.component';
 
 
 
-export default function Apply() {
+export default function Apply(props) {
   
+  const navigate = useNavigate();
 
   return (
     <div className='container'>
       <Header></Header>
-        <ApplicationForm></ApplicationForm>
+        <ApplicationForm {...props} navigate={navigate}></ApplicationForm>
     </div>
   );
 }
