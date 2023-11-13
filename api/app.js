@@ -14,6 +14,7 @@ var testAPIRouter = require("./routes/testAPI");
 var signupRouter = require("./routes/signup");
 var checkTokenRouter = require("./routes/checkToken");
 var loginRouter = require("./routes/login");
+var checkAdminRouter = require("./routes/checkAdmin");
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/signup", signupRouter);
 app.use("/checktoken", checkTokenRouter);
+app.use("/checkAdmin", checkAdminRouter);
 app.use("/login", loginRouter);
 
 // catch 404 and forward to error handler
