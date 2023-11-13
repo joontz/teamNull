@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import withAuth from "./components/withAuth";
 import Home from "./pages/homePage";
 import Login from "./pages/loginPage";
 import Apply from "./pages/apply";
@@ -13,6 +12,7 @@ import Search from "./pages/search"
 import Dashboard from "./pages/dashboard";
 import RequireAuth from "./RequireAuth";
 import Contact from "./pages/contact";
+import RequireAdmin from "./RequireAdmin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,10 +21,26 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/apply" element={<Apply />} />
+        <Route
+          path="/apply"
+          element={
+            <RequireAuth>
+              <Apply />
+            </RequireAuth>
+          }
+        />
+        {/* <Route path="/apply" element={<Apply />} /> */}
         <Route path="/faq" element={<Faq />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/search" element={<Search />} />
+        <Route
+          path="/search"
+          element={
+            <RequireAdmin>
+              <Search />
+            </RequireAdmin>
+          }
+        />
+        {/* <Route path="/search" element={<Search />} /> */}
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/dashboard"

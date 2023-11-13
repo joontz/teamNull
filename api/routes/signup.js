@@ -5,9 +5,17 @@ var router = express.Router();
 const User = require("../models/user.model");
 
 router.post("/", function (req, res) {
-  const { email, password } = req.body;
+  const { email, password, pin } = req.body;
+  let admin;
 
-  const user = new User({ email, password });
+  if (pin === "5555") {
+    admin = true
+  } else {
+    admin = false
+  }
+
+
+  const user = new User({ email, password, admin });
 
   user
     .save()

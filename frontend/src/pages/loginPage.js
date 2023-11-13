@@ -47,10 +47,16 @@ function Login() {
     "font-weight": "bold",
   };
 
+  const signupMessage = {
+    "font-weight": "bold",
+    "font-size": "20px",
+  };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -76,7 +82,7 @@ function Login() {
       .then((res) => {
         if (res.status === 200) {
           alert("successfully logged in");
-          navigate('/dashboard')
+          navigate("/dashboard");
         } else {
           const error = new Error(res.error);
           throw error;
@@ -128,7 +134,8 @@ function Login() {
             onClick={(e) => {
               e.preventDefault();
               navigate("/signup");
-            }}>
+            }}
+            style={signupMessage}>
             No account? Sign up here
           </Link>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import Header from "../components/header";
@@ -41,16 +41,34 @@ function Signup() {
     "font-weight": "bold",
   };
 
+  const adminText = {
+    "font-size": "20px",
+    justifyContent: "center",
+
+  };
+
+  const checkBox = {
+    width: "18px",
+    height: "18px",
+  };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [pin, setPin] = useState("");
   const [error, setError] = useState(null);
+  const [showPinInput, setShowPinInput] = useState(false);
+
+  const handlePinCheckboxChange = (event) => {
+    setShowPinInput(event.target.checked);
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === "email") setEmail(value);
     else if (name === "password") setPassword(value);
     else if (name === "confirmPassword") setConfirmPassword(value);
+    else if (name === "pin") setPin(value);
     setError(null);
   };
 
@@ -62,11 +80,6 @@ function Signup() {
       return;
     }
 
-    const formData = {
-      email: `${email}`,
-      password: `${password}`,
-    };
-
     fetch("http://localhost:9000/signup", {
       method: "POST",
       headers: {
@@ -75,6 +88,7 @@ function Signup() {
       body: JSON.stringify({
         email: email,
         password: password,
+        pin: pin
       }),
     })
       .then((res) => {
@@ -134,6 +148,32 @@ function Signup() {
                 style={input}
               />
             </div>
+            <p></p>
+            <div>
+              <label style={adminText}>
+                <input
+                  type="checkbox"
+                  onChange={handlePinCheckboxChange}
+                  style={checkBox}
+                />
+                Admin?
+              </label>
+              <p></p>
+            </div>
+            {showPinInput && (
+              <div>
+                <input
+                  type="text"
+                  name="pin"
+                  value={pin}
+                  onChange={handleInputChange}
+                  placeholder="Enter Admin PIN"
+                  maxLength="4"
+                  required
+                  style={input}
+                />
+              </div>
+            )}
             <p></p>
             <button type="submit" style={loginButton}>
               Sign Up
