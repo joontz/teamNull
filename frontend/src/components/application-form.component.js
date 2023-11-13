@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './application-form.css';
+import { useNavigate } from "react-router-dom";
 
+//const navigate = useNavigate;
 export default class ApplicationForm extends Component {
     constructor(props) {
         super(props);
@@ -53,6 +55,7 @@ export default class ApplicationForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        const {navigate} = this.props;
         const currentLevelValue = this.state.currentLevel;
         const graduatingSemesterValue = this.state.graduatingSemester;
         const currentMajorValue = this.state.currentMajor;
@@ -80,7 +83,46 @@ export default class ApplicationForm extends Component {
             return;
         }
 
-        // Handle form submission here, send data to the database
+        //TODO: @jdsp4k This should be genericized
+        fetch("http://localhost:9000/apply", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              firstName: this.firstName,
+              lastName: this.lastName,
+              studentId: this.studentId,
+              collegeEmail: this.collegeEmail,
+              currentLevel: this.currentLevel,
+              graduatingSemester: this.graduatingSemester,
+              cumulativeGPA: this.cumulativeGPA,
+              hoursCompleted: this.hoursCompleted,
+              undergraduateDegree: this.undergraduateDegree,
+              currentMajor: this.currentMajor,
+              applyingFor: this.applyingFor,
+              isGtaCertified: this.isGtaCertified,
+              coursesForLabInstructor: this.coursesForLabInstructor,
+              resume: this.resume,
+            }),
+          })      
+          .then((res) => {
+            if (res.status === 200) {
+              alert("Application submitted");
+              navigate('/dashboard')
+            } else {
+              alert(res.status);
+              const error = new Error(res.error);
+              throw error;
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            //setError("");
+          });
+        //console.log(this.state);
+        // Handle form submission here, send data to the server
         console.log(this.state);
     }
 
