@@ -11,7 +11,6 @@ import Signup from "./pages/signupPage";
 import Search from "./pages/search"
 import Dashboard from "./pages/dashboard";
 import RequireAuth from "./RequireAuth";
-import Contact from "./pages/contact";
 import RequireAdmin from "./RequireAdmin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -41,7 +40,6 @@ root.render(
           }
         />
         {/* <Route path="/search" element={<Search />} /> */}
-        <Route path="/contact" element={<Contact />} />
         <Route
           path="/dashboard"
           element={

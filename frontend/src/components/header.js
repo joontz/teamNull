@@ -23,10 +23,6 @@ export default function Header() {
     navigate("/search");
   }
 
-  function goToContact() {
-    navigate("/contact");
-  }
-
   function goToHome() {
     navigate("/");
   }
@@ -62,10 +58,6 @@ export default function Header() {
           <button className="link" onClick={goToFaq}>
             {" "}
             FAQ{" "}
-          </button>
-          <button className="link" onClick={goToContact}>
-            {" "}
-            Contact Us{" "}
           </button>
           <button className="link" type="submit" onClick={signInClick}>
             Login

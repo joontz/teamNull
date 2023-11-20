@@ -28,7 +28,6 @@ export default class ApplicationForm extends Component {
 
         if (type === 'select-multiple') {
             const selectedOptions = Array.from(event.target.selectedOptions).map(option => option.value);
-
             this.setState({
                 [name]: selectedOptions,
             });
@@ -82,6 +81,8 @@ export default class ApplicationForm extends Component {
             alert("Please select a course that you wish to apply for.");
             return;
         }
+        
+        const stringCoursesForLabInstructor = this.state.coursesForLabInstructor.join(',');
 
         //TODO: @jdsp4k This should be genericized
         fetch("http://localhost:9000/apply", {
@@ -91,21 +92,21 @@ export default class ApplicationForm extends Component {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              firstName: this.firstName,
-              lastName: this.lastName,
-              studentId: this.studentId,
-              collegeEmail: this.collegeEmail,
-              currentLevel: this.currentLevel,
-              graduatingSemester: this.graduatingSemester,
-              cumulativeGPA: this.cumulativeGPA,
-              hoursCompleted: this.hoursCompleted,
-              undergraduateDegree: this.undergraduateDegree,
-              currentMajor: this.currentMajor,
-              applyingFor: this.applyingFor,
-              isGtaCertified: this.isGtaCertified,
-              coursesForLabInstructor: this.coursesForLabInstructor,
-              resume: this.resume,
-            }),
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                studentId: this.state.studentId,
+                collegeEmail: this.state.collegeEmail,
+                currentLevel: this.state.currentLevel,
+                graduatingSemester: this.state.graduatingSemester,
+                cumulativeGPA: this.state.cumulativeGPA,
+                hoursCompleted: this.state.hoursCompleted,
+                undergraduateDegree: this.state.undergraduateDegree,
+                currentMajor: this.state.currentMajor,
+                applyingFor: this.state.applyingFor,
+                isGtaCertified: this.state.isGtaCertified,
+                coursesForLabInstructor: stringCoursesForLabInstructor,
+                resume: this.state.resume
+              }),
           })      
           .then((res) => {
             if (res.status === 200) {
@@ -123,7 +124,7 @@ export default class ApplicationForm extends Component {
           });
         //console.log(this.state);
         // Handle form submission here, send data to the server
-        console.log(this.state);
+        //console.log(this.state);
     }
 
 
@@ -173,13 +174,13 @@ export default class ApplicationForm extends Component {
                                     <div className="inputPrompt">Graduating Semester:</div>
                         <select name="graduatingSemester" value={this.state.graduatingSemester} onChange={this.handleInputChange}>
                             <option value="">select...</option>
-                            <option value="fall 2023">2023 Fall</option>
-                            <option value="spring 2024">2024 Spring</option>
-                            <option value="fall 2024">2024 Fall</option>
-                            <option value="spring 2025">2025 Spring</option>
-                            <option value="fall 2025">2025 Fall</option>
-                            <option value="spring 2026">2026 Spring</option>
-                            <option value="fall 2026">2026 Fall</option>
+                            <option value="Fall 2023">2023 Fall</option>
+                            <option value="Spring 2024">2024 Spring</option>
+                            <option value="Fall 2024">2024 Fall</option>
+                            <option value="Spring 2025">2025 Spring</option>
+                            <option value="Fall 2025">2025 Fall</option>
+                            <option value="Spring 2026">2026 Spring</option>
+                            <option value="Fall 2026">2026 Fall</option>
                             </select>
                                 </div>
 

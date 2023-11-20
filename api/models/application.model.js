@@ -20,7 +20,7 @@ const applicationSchema = new Schema(
     },
     studentId: {
       type: Number,
-      min: 10000000,
+      min: 0,
       max: 99999999,
     },
     collegeEmail: {
