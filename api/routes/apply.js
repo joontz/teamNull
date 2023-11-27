@@ -19,6 +19,7 @@ router.post("/", withAuth, function (req, res) {
         applyingFor,
         isGtaCertified,
         coursesForLabInstructor,
+        resume
     } = req.body;
 
     const app = new App({
@@ -35,6 +36,7 @@ router.post("/", withAuth, function (req, res) {
         applyingFor,
         isGtaCertified,
         coursesForLabInstructor,
+        resume
     });
 
     app.save()
