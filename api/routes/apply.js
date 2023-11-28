@@ -18,6 +18,7 @@ router.post("/", withAuth, function (req, res) {
         currentMajor,
         applyingFor,
         isGtaCertified,
+        coursesForGrader,
         coursesForLabInstructor,
         resume
     } = req.body;
@@ -35,6 +36,7 @@ router.post("/", withAuth, function (req, res) {
         currentMajor,
         applyingFor,
         isGtaCertified,
+        coursesForGrader,
         coursesForLabInstructor,
         resume
     });

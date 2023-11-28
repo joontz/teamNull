@@ -7,18 +7,6 @@ import Header from "../components/header"
 import Footer from "../components/footer"
 import JobPosting from '../components/jobposting';
 
-
-const jobsData = [
-  {
-      title: 'CS476 - Intro to Blockchain',
-      content: 'A stupid blockchain class',
-  },
-  {
-      title: 'CS101 - Intro to CS',
-      content: 'learn the basics of cs!',
-  }
-]
-
 export default function App() {
   
 
