@@ -83,6 +83,7 @@ export default class ApplicationForm extends Component {
         }
         
         const stringCoursesForLabInstructor = this.state.coursesForLabInstructor.join(',');
+        const stringCoursesForGrader = this.state.coursesForGrader.join(',');
 
         //TODO: @jdsp4k This should be genericized
         fetch("http://localhost:9000/apply", {
@@ -104,6 +105,7 @@ export default class ApplicationForm extends Component {
                 currentMajor: this.state.currentMajor,
                 applyingFor: this.state.applyingFor,
                 isGtaCertified: this.state.isGtaCertified,
+                coursesForGrader: stringCoursesForGrader,
                 coursesForLabInstructor: stringCoursesForLabInstructor,
                 resume: this.state.resume
               }),
@@ -202,7 +204,7 @@ export default class ApplicationForm extends Component {
                             <option value="ECE">ECE</option>
                             <option value="EE">EE</option>
                             <option value="IT">IT</option>
-                            <option value="other">other</option>
+                            <option value="Other">Other</option>
                             </select>
                                 </div>
 
@@ -269,14 +271,14 @@ export default class ApplicationForm extends Component {
                         <select name="coursesForLabInstructor" multiple class="multi-select" value={this.state.coursesForLabInstructor} onChange={this.handleInputChange}>
                             <option value="CS 101L">CS 101L</option>
                             <option value="CS 201L">CS 201L</option>
-                            <option value="CS 227">ECE 227</option>
-                            <option value="CS 229">ECE 229</option>
-                            <option value="CS 277">ECE 277</option>
-                            <option value="CS 303">ECE 303</option>
-                            <option value="CS 377">ECE 377</option>
-                            <option value="CS 331">ECE 331</option>
-                            <option value="CS 427">ECE 427</option>
-                            <option value="CS 429">ECE 429</option>
+                            <option value="ECE 227">ECE 227</option>
+                            <option value="ECE 229">ECE 229</option>
+                            <option value="ECE 277">ECE 277</option>
+                            <option value="ECE 303">ECE 303</option>
+                            <option value="ECE 377">ECE 377</option>
+                            <option value="ECE 331">ECE 331</option>
+                            <option value="ECE 427">ECE 427</option>
+                            <option value="ECE 429">ECE 429</option>
                             </select>
                     </div>
 

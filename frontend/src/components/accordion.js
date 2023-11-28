@@ -18,7 +18,7 @@ const AccordionSection = ({section,isActiveSection, setActiveIndex, sectionIndex
 };
 
 const Accordion = ({ sections }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState();
 return (
     <div className='accordionStyles'>
         {sections.map((section, index) => (

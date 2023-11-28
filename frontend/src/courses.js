@@ -21,7 +21,7 @@ const COURSES = {
   },
   'CS320': {
     title: 'CS320',
-    description: 'Principles of Programming Languages',
+    description: 'Principles of Programming',
   },
   'CS349': {
     title: 'CS349',

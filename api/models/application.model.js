@@ -60,6 +60,10 @@ const applicationSchema = new Schema(
     isGtaCertified: {
       type: Boolean,
     },
+    coursesForGrader: {
+      type: String,
+      trim: true,
+    },
     coursesForLabInstructor: {
       type: String,
       trim: true,
