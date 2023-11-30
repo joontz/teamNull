@@ -8,7 +8,7 @@ import Login from "./pages/loginPage";
 import Apply from "./pages/apply";
 import Faq from "./pages/faq";
 import Signup from "./pages/signupPage";
-import Search from "./pages/search"
+import Search from "./pages/search";
 import Dashboard from "./pages/dashboard";
 import RequireAuth from "./RequireAuth";
 import RequireAdmin from "./RequireAdmin";
@@ -43,9 +43,9 @@ root.render(
         <Route
           path="/dashboard"
           element={
-            <RequireAuth>
+            <RequireAdmin>
               <Dashboard />
-            </RequireAuth>
+            </RequireAdmin>
           }
         />
       </Routes>
