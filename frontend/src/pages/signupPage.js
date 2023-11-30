@@ -1,63 +1,63 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "../App.css";
-import Header from "../components/header";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../App.css';
+import Header from '../components/header';
 
 function Signup() {
   const navigate = useNavigate();
 
   const box = {
-    "border-radius": "5%",
-    textAlign: "center",
-    padding: "20px",
-    border: "2px solid #ccc",
-    "box-shadow": "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
-
+    'border-radius': '5%',
+    textAlign: 'center',
+    padding: '20px',
+    border: '2px solid #ccc',
+    'box-shadow':
+      'rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px',
   };
 
   const input = {
-    "text-align": "left",
-    padding: "12px 20px",
-    "font-size": "20px",
-    border: "2px solid #ccc",
-    "border-radius": "10px",
+    'text-align': 'left',
+    padding: '12px 20px',
+    'font-size': '20px',
+    border: '2px solid #ccc',
+    'border-radius': '10px',
   };
 
   const container = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "75vh",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '75vh',
   };
 
   const loginButton = {
-    "background-color": "#0066cc",
-    color: "white",
-    padding: "10px 50px",
-    "border-radius": "10px",
-    "font-size": "20px",
+    'background-color': '#0066cc',
+    color: 'white',
+    padding: '10px 50px',
+    'border-radius': '10px',
+    'font-size': '20px',
+    border: 'none',
   };
 
   const errorMessage = {
-    color: "red",
-    "font-weight": "bold",
+    color: 'red',
+    'font-weight': 'bold',
   };
 
   const adminText = {
-    "font-size": "20px",
-    justifyContent: "center",
-
+    'font-size': '20px',
+    justifyContent: 'center',
   };
 
   const checkBox = {
-    width: "18px",
-    height: "18px",
+    width: '18px',
+    height: '18px',
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [pin, setPin] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [pin, setPin] = useState('');
   const [error, setError] = useState(null);
   const [showPinInput, setShowPinInput] = useState(false);
 
@@ -67,10 +67,10 @@ function Signup() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    if (name === "email") setEmail(value);
-    else if (name === "password") setPassword(value);
-    else if (name === "confirmPassword") setConfirmPassword(value);
-    else if (name === "pin") setPin(value);
+    if (name === 'email') setEmail(value);
+    else if (name === 'password') setPassword(value);
+    else if (name === 'confirmPassword') setConfirmPassword(value);
+    else if (name === 'pin') setPin(value);
     setError(null);
   };
 
@@ -78,24 +78,24 @@ function Signup() {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError('Passwords do not match.');
       return;
     }
 
-    fetch("http://localhost:9000/signup", {
-      method: "POST",
+    fetch('http://localhost:9000/signup', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
         password: password,
-        pin: pin
+        pin: pin,
       }),
     })
       .then((res) => {
         if (res.status === 200) {
-          alert("successfully created user");
+          alert('successfully created user');
         } else {
           const error = new Error(res.error);
           throw error;
@@ -103,10 +103,10 @@ function Signup() {
       })
       .catch((err) => {
         console.error(err);
-        alert("error creating user");
+        alert('error creating user');
       });
 
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
@@ -186,7 +186,7 @@ function Signup() {
             <Link
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/login");
+                navigate('/login');
               }}>
               Already have an account? Login here
             </Link>

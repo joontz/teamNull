@@ -33,7 +33,9 @@ function Login() {
     padding: "10px 50px",
     "border-radius": "10px",
     "font-size": "20px",
+    border: "none",
   };
+
 
   const errorMessage = {
     color: "red",
