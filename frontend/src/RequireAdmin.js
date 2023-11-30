@@ -19,7 +19,7 @@ const RequireAdmin = ({ children }) => {
     });
   }, []);
 
-  return isAdmin ? children : <Navigate to="/login" />;
+  return isAdmin ? children : <Navigate to="/" />;
 };
 
 export default RequireAdmin;

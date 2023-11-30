@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css";
 import Header from "../components/header";
-import Signup from "./signupPage";
 
 function Login() {
   const box = {
@@ -10,13 +9,7 @@ function Login() {
     textAlign: "center",
     padding: "20px",
     border: "2px solid #ccc",
-  };
-
-  const title = {
-    textAlign: "center",
-    "font-size": "40px",
-    "padding-top": "50px",
-    "padding-bottom": "50px",
+    "box-shadow": "rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px",
   };
 
   const input = {
@@ -40,7 +33,9 @@ function Login() {
     padding: "10px 50px",
     "border-radius": "10px",
     "font-size": "20px",
+    border: "none",
   };
+
 
   const errorMessage = {
     color: "red",
@@ -55,8 +50,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [isLoggedin, setIsLoggedin] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -68,7 +62,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   fetch ("http://localhost:9000/login", {
+    fetch("http://localhost:9000/login", {
       method: "POST",
       credentials: "include",
       headers: {
