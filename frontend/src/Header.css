@@ -54,28 +54,42 @@
   width: 100%;
   position: relative; 
   cursor: pointer; 
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .link:hover {
-    background-color: #7c7d81; /* Change the background color when the button is clicked */
+    background-color: #7c7d81; 
   }
 
 
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #0066cc; /* Example background color */
-  z-index: 1000; /* Adjust the z-index as needed */
-  /* Add any other styles for your header */
-}
+  .footer {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0066cc; /* Example background color */
+    z-index: 1000; /* Adjust the z-index as needed */
+    /* Add any other styles for your header */
+  }
 
 .footer h1 {
   margin-right: 20px; /* Adjust the value as needed */
+}
+
+.footer-text {
+  color: white; 
+  font-weight: bold;
+  font-size: 15px
+}
+
+.link-email{
+  color: gold; 
+  font-size: 15px;
 }
   
