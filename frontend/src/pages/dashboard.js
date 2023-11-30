@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from "react";
 import "../App.css";
 import Header from "../components/header";
+import AddCourse from "../components/addCourse";
+import ApplicationData from "../components/applicationData";
+import ViewCourses from "../components/viewCourses";
 
-
-export default function dashboard() {
+export default function Dashboard() {
+  
   return (
-    <div className="container">
+    <div>
       <Header />
-      <text>only people who are logged in can see this</text>
+      <div className="dashboard-grid">
+        <AddCourse />
+        <div id='dash-item4' >
+         <ViewCourses />
+        </div>
+        <div id='dash-item5'>
+          <ApplicationData />
+        </div>
+      </div>
     </div>
   );
 }

@@ -24,6 +24,9 @@ export default function Header() {
     navigate("/search");
   }
 
+  function goToDashboard() {
+    navigate("/dashboard")
+  }
   function goToHome() {
     navigate("/");
   }
@@ -86,6 +89,12 @@ export default function Header() {
               Search Applications{" "}
             </button>
           ) : null}
+          {admin ? (
+          <button className="link" onClick={goToDashboard}>
+            {" "}
+            Dashboard{" "}
+          </button>
+          ) : null }
           <button className="link" onClick={goToFaq}>
             {" "}
             FAQ{" "}

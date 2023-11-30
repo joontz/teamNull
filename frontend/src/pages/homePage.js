@@ -1,8 +1,6 @@
 // App.js
-import React, { useState, useEffect } from 'react';
 import '../App.css';
 import students from '../images/students.jpg';
-import { useNavigate } from "react-router-dom"
 import Header from "../components/header"
 import Footer from "../components/footer"
 import JobPosting from '../components/jobposting';
@@ -21,7 +19,6 @@ export default function App() {
           <div className='landing-header-txt'> Apply for one of the many courses listed below! </div>
         </div>
 
-      
       <div className='postings-container'>
       <JobPosting />
       </div>

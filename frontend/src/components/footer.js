@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import "../Header.css";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Footer() {
   return (

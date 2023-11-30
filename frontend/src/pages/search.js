@@ -1,9 +1,8 @@
 // App.js
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from "../components/header"
-import { useNavigate } from 'react-router-dom';
 import { AgGridReact } from "ag-grid-react";
-import Select from 'react-select'
+import Select from 'react-select';
 import courseOptions from '../allcourses';
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
@@ -20,7 +19,7 @@ export default function Search() {
     const selectClassesInputRef = useRef();
 
     useEffect(() => {
-      fetchData(); // Fetch data when the component mounts
+      fetchData(); 
     }, []);
 
     const [columnDefs] = useState([
@@ -47,7 +46,7 @@ export default function Search() {
 
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:9000/searchName"); // Update with your actual API endpoint
+        const response = await fetch("http://localhost:9000/applications"); // Update with your actual API endpoint
         const result = await response.json();
         setData(result);
         console.log(result);
@@ -165,6 +164,15 @@ export default function Search() {
               lowerCaseFirstName.includes(lowerCaseSearchTerm) &&
               containsSearchValue(selectedMajorOptions, node.data.currentMajor)
             );
+            
+          }  else if (isGtaToggled && hasSearchTerm && hasSelectedClasses) {
+            return (
+              node.data.isGtaCertified === true &&
+              lowerCaseFirstName.includes(lowerCaseSearchTerm) &&
+              containsSearchValue(selectedMajorOptions, node.data.currentMajor) &&
+              (containsClassSearchValue(selectedClasses, node.data.coursesForGrader) || containsClassSearchValue(selectedClasses, node.data.coursesForLabInstructor))
+            );
+            
           } else if (hasSearchTerm && hasSelectedMajorOptions && hasSelectedClasses) {
             return (
               lowerCaseFirstName.includes(lowerCaseSearchTerm) &&
@@ -269,7 +277,7 @@ export default function Search() {
             />
         </div>
       </div>
-      <div className="ag-theme-alpine" style={{ height: 800, width: '98%', column: 'flex'}}>
+      <div className="ag-theme-alpine" style={{ height: 800, width: '98%', height: '800px', column: 'flex'}}>
         <AgGridReact
           ref={gridRef} 
           rowData={data} 
@@ -280,7 +288,7 @@ export default function Search() {
           doesExternalFilterPass={doesExternalFilterPass}>
         </AgGridReact>
       </div>
-      <div>{searchTerm}</div>
+      <div style={{height:'20px'}}></div>
       
     </div>
   );

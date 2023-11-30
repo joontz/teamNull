@@ -16,7 +16,10 @@ var checkTokenRouter = require("./routes/checkToken");
 var loginRouter = require("./routes/login");
 var checkAdminRouter = require("./routes/checkAdmin");
 var applicationRouter = require("./routes/apply");
-var searchName = require("./routes/searchName");
+var applications = require("./routes/applications");
+var addCourse = require('./routes/addCourse');
+var courses = require('./routes/courses');
+var removeCourse = require('./routes/removeCourse');
 
 var app = express();
 
@@ -49,7 +52,11 @@ app.use("/checktoken", checkTokenRouter);
 app.use("/checkAdmin", checkAdminRouter);
 app.use("/login", loginRouter);
 app.use("/apply", applicationRouter);
-app.use("/searchName", searchName);
+app.use("/applications", applications);
+app.use("/addCourse", addCourse);
+app.use("/removeCourse", removeCourse);
+app.use("/courses", courses);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
