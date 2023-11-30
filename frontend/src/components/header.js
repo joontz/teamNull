@@ -3,7 +3,8 @@ import "../Header.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const [apiResponse, setApiResponse] = useState("");
+  const [loggedIn, setLoggedIn] = useState("");
+  const [admin, setIsAdmin] = useState("");
 
   const navigate = useNavigate();
 
@@ -27,14 +28,40 @@ export default function Header() {
     navigate("/");
   }
 
-  // useEffect(() => {
-  //   // This is where you can call your API and set the response in state.
-  //   // You can use the fetch API or any other method you prefer.
-  //   fetch("http://localhost:9000/testAPI")
-  //     .then((res) => res.text())
-  //     .then((res) => setApiResponse(res))
-  //     .catch((error) => console.error(error)) // Handle any fetch errors
-  // }, []) // The empty array [] means this effect runs once when the component mounts.
+  useEffect(() => {
+    const loginCheck = async () => {
+      fetch("http://localhost:9000/checktoken", {
+        method: "GET",
+        credentials: "include",
+      }).then((res) => {
+        if (res.status === 200) {
+          setLoggedIn(true);
+        } else if (res.status === 401) {
+          setLoggedIn(false);
+        }
+      });
+    };
+
+    const adminCheck = async () => {
+      fetch("http://localhost:9000/checkadmin", {
+        method: "GET",
+        credentials: "include",
+      }).then((res) => {
+        if (res.status === 200) {
+          setIsAdmin(true);
+        } else if (res.status === 401) {
+          setIsAdmin(false);
+        }
+      });
+    };
+
+    const fetchUser = async () => {
+      await loginCheck();
+      await adminCheck();
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div className="header">
@@ -47,21 +74,27 @@ export default function Header() {
             {" "}
             Home{" "}
           </button>
-          <button className="link" onClick={goToApply}>
-            {" "}
-            Apply{" "}
-          </button>
-          <button className="link" onClick={goToSearch}>
-            {" "}
-            Search Applications{" "}
-          </button>
+          {!admin ? (
+            <button className="link" onClick={goToApply}>
+              {" "}
+              Apply{" "}
+            </button>
+          ) : null}
+          {admin ? (
+            <button className="link" onClick={goToSearch}>
+              {" "}
+              Search Applications{" "}
+            </button>
+          ) : null}
           <button className="link" onClick={goToFaq}>
             {" "}
             FAQ{" "}
           </button>
-          <button className="link" type="submit" onClick={signInClick}>
-            Login
-          </button>
+          {!loggedIn ? (
+            <button className="link" type="submit" onClick={signInClick}>
+              Login
+            </button>
+          ) : null}
         </div>
       </div>
     </div>
