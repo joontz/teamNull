@@ -1,9 +1,6 @@
 // App.js
-import React, { useState, useEffect } from 'react';
+import React, { useState  } from 'react';
 import '../App.css';
-import students from '../images/students.jpg';
-import { useNavigate } from "react-router-dom"
-import Header from "../components/header"
 import './application-form.css';
 import Accordion from './accordion'
 
@@ -11,6 +8,10 @@ const accordionData = [
     {
         title: 'What courses can I apply for?',
         content: 'Available courses can be found on the home page and are updated every semester based on class sizes and need.',
+    },
+    {
+        title: 'How many courses can I apply for?',
+        content: 'Apply for any course that you feel confident in, you may apply for any number of courses.',
     },
     {
         title: 'Do I need to be GTA certified?',
@@ -31,6 +32,10 @@ const accordionData = [
     {
         title: 'PhD students',
         content: 'You may be considered as a grader for any class, based on feedback from your advisor.',
+    },
+    {
+        title: 'Equal Opportunity Statement',
+        content: 'We are committed to providing equal opportunities to all applicants and employees, regardless of race, color, religion, sex, national origin, age, disability, or any other characteristic protected by law. Our hiring and employment decisions are based on merit, qualifications, and campus needs.'
     }
 ]
 
