@@ -1,41 +1,56 @@
-import React, { useState, useEffect } from "react";
-import "../Header.css";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import '../Header.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
-  const [loggedIn, setLoggedIn] = useState("");
-  const [admin, setIsAdmin] = useState("");
+  const [loggedIn, setLoggedIn] = useState('');
+  const [admin, setIsAdmin] = useState('');
 
   const navigate = useNavigate();
 
   function signInClick() {
-    navigate("/login");
+    navigate('/login');
   }
 
   function goToApply() {
-    navigate("/apply");
+    navigate('/apply');
   }
 
   function goToFaq() {
-    navigate("/faq");
+    navigate('/faq');
   }
 
   function goToSearch() {
-    navigate("/search");
+    navigate('/search');
   }
 
   function goToDashboard() {
-    navigate("/dashboard")
+    navigate('/dashboard');
   }
   function goToHome() {
-    navigate("/");
+    navigate('/');
+  }
+
+  function logOut() {
+    fetch('http://localhost:9000/logout', {
+      method: 'POST',
+      credentials: 'include',
+    }).then((res) => {
+      if (res.status === 200) {
+        setLoggedIn(false);
+        navigate('/');
+        alert('successfully logged out');
+      } else {
+        setLoggedIn(true);
+      }
+    });
   }
 
   useEffect(() => {
     const loginCheck = async () => {
-      fetch("http://localhost:9000/checktoken", {
-        method: "GET",
-        credentials: "include",
+      fetch('http://localhost:9000/checktoken', {
+        method: 'GET',
+        credentials: 'include',
       }).then((res) => {
         if (res.status === 200) {
           setLoggedIn(true);
@@ -46,9 +61,9 @@ export default function Header() {
     };
 
     const adminCheck = async () => {
-      fetch("http://localhost:9000/checkadmin", {
-        method: "GET",
-        credentials: "include",
+      fetch('http://localhost:9000/checkadmin', {
+        method: 'GET',
+        credentials: 'include',
       }).then((res) => {
         if (res.status === 200) {
           setIsAdmin(true);
@@ -64,7 +79,7 @@ export default function Header() {
     };
 
     fetchUser();
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div className="header">
@@ -74,36 +89,42 @@ export default function Header() {
       <div className="link-line">
         <div className="link-container">
           <button className="link" onClick={goToHome}>
-            {" "}
-            Home{" "}
+            {' '}
+            <text className="text">Home</text>{' '}
           </button>
           {!admin ? (
             <button className="link" onClick={goToApply}>
-              {" "}
-              Apply{" "}
+              {' '}
+              <text className="text">Apply</text>{' '}
             </button>
           ) : null}
           {admin ? (
             <button className="link" onClick={goToSearch}>
-              {" "}
-              Search Applications{" "}
+              <text className="text">Search Applications</text>{' '}
             </button>
           ) : null}
           {admin ? (
-          <button className="link" onClick={goToDashboard}>
-            {" "}
-            Dashboard{" "}
-          </button>
-          ) : null }
-          <button className="link" onClick={goToFaq}>
-            {" "}
-            FAQ{" "}
-          </button>
-          {!loggedIn ? (
-            <button className="link" type="submit" onClick={signInClick}>
-              Login
+            <button className="link" onClick={goToDashboard}>
+              {' '}
+              <text className="text">Dashboard</text>{' '}
             </button>
           ) : null}
+          {!admin ? (
+            <button className="link" onClick={goToFaq}>
+              {' '}
+              <text className="text">FAQ</text>{' '}
+            </button>
+          ) : null}
+          {!loggedIn ? (
+            <button className="link" type="submit" onClick={signInClick}>
+              <text className="text">Login</text>{' '}
+            </button>
+          ) : (
+            <button className="link" onClick={logOut}>
+              {' '}
+              <text className="text">Log Out</text>{' '}
+            </button>
+          )}
         </div>
       </div>
     </div>
