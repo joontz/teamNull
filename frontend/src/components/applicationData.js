@@ -13,8 +13,6 @@ export default function ApplicationData() {
 
   useEffect(() => {
     fetchData(); // Fetch data when the component mounts
-    console.log(data)
-    
   }, []);
 
   const fetchData = async () => {
