@@ -94,6 +94,49 @@ export default class ApplicationForm extends Component {
     const coursesForGraderValue = this.state.coursesForGrader;
     const coursesForLabInstructorValue = this.state.coursesForLabInstructor;
 
+    function fetchApplication(
+      state,
+      cfg,
+      cfi,
+      resumeTarget,
+      ){
+      fetch('http://localhost:9000/apply', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: state.firstName,
+          lastName: state.lastName,
+          studentId: state.studentId,
+          collegeEmail: state.collegeEmail,
+          currentLevel: state.currentLevel,
+          graduatingSemester: state.graduatingSemester,
+          cumulativeGPA: state.cumulativeGPA,
+          hoursCompleted: state.hoursCompleted,
+          undergraduateDegree: state.undergraduateDegree,
+          currentMajor: state.currentMajor,
+          applyingFor: state.applyingFor,
+          isGtaCertified: state.isGtaCertified,
+          coursesForGrader: cfg,
+          coursesForLabInstructor: cfi,
+          resume: resumeTarget,
+        }),
+      }).then((res) => {
+          if (res.status === 200) {
+            alert('Application submitted');
+            navigate('/dashboard');
+          } else {
+            alert(res.status);
+            const error = new Error(res.error);
+            throw error;
+          }
+        }).catch((err) => {
+          console.error(err);
+        });
+    }
+
     // Check if "Select..." is chosen for the dropdown selects
     if (currentLevelValue === '') {
       alert(
@@ -127,45 +170,39 @@ export default class ApplicationForm extends Component {
       .map((course) => `${course.value}`)
       .join(', ');
 
-    //TODO: @jdsp4k This should be genericized
-    fetch('http://localhost:9000/apply', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        studentId: this.state.studentId,
-        collegeEmail: this.state.collegeEmail,
-        currentLevel: this.state.currentLevel,
-        graduatingSemester: this.state.graduatingSemester,
-        cumulativeGPA: this.state.cumulativeGPA,
-        hoursCompleted: this.state.hoursCompleted,
-        undergraduateDegree: this.state.undergraduateDegree,
-        currentMajor: this.state.currentMajor,
-        applyingFor: this.state.applyingFor,
-        isGtaCertified: this.state.isGtaCertified,
-        coursesForGrader: stringCoursesForGrader,
-        coursesForLabInstructor: stringCoursesForLabInstructor,
-        resume: this.state.resume,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          alert('Application submitted');
-          navigate('/dashboard');
-        } else {
-          alert(res.status);
-          const error = new Error(res.error);
-          throw error;
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        //setError("");
+    var resumeTarget = "";
+    const fileField = document.querySelector('input[type="file"]');
+
+    if (fileField.files.length > 0) {
+      console.log("Uploading file...")
+      const resumeURL = 'http://localhost:9000/resume'
+      const formData = new FormData();
+
+      formData.append("collegeEmail", this.state.collegeEmail);
+      formData.append("resume", fileField.files[0]);
+
+      fetch(resumeURL, {
+          method: 'POST',
+          credentials: 'include',
+          body: formData,
+      }).then((res) => {
+          if(res.status === 200){
+            res.json().then((body) => {
+              resumeTarget = body;
+              console.log("File uploaded.");
+              fetchApplication(this.state, stringCoursesForGrader, stringCoursesForLabInstructor, resumeTarget);
+            });
+          } else {
+            alert(res.status);
+            const error = new Error(res.error);
+            throw error;
+          }
+      }).catch((err) => {
+          console.error(err);
       });
+    } else {
+      fetchApplication(this.state, stringCoursesForGrader, stringCoursesForLabInstructor, resumeTarget);
+    }
   };
 
   render() {
