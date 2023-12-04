@@ -55,12 +55,10 @@
   width: 100%;
   position: relative; 
   cursor: pointer; 
-  font-weight: bold;
-  font-size: 20px;
 }
 
 .link:hover {
-    background-color: #7c7d81; 
+    background-color: #003c6c; 
   }
 
 
@@ -92,5 +90,19 @@
 .link-email{
   color: gold; 
   font-size: 15px;
+}
+
+.text {
+  animation: fadeIn ease .35s;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }
   
