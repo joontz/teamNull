@@ -20,7 +20,8 @@ var applications = require("./routes/applications");
 var addCourse = require('./routes/addCourse');
 var courses = require('./routes/courses');
 var removeCourse = require('./routes/removeCourse');
-var resume = require('./routes/resume');
+var resume = require('./routes/resume')
+var logout = require('./routes/logout')
 
 var app = express();
 
@@ -58,6 +59,7 @@ app.use("/addCourse", addCourse);
 app.use("/removeCourse", removeCourse);
 app.use("/courses", courses);
 app.use("/resume", resume);
+app.use("/logout", logout);
 
 
 // catch 404 and forward to error handler
