@@ -99,6 +99,14 @@ button.submit-button:hover {
     background-color: #005ebd;
 }
 
+button.submit-button:active{
+    background:grey;
+}
+
+button.submit-button:focus{
+    background:grey;
+}
+
 input[type="number"] {
     -moz-appearance: textfield;
 }
